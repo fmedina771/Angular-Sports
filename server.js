@@ -30,13 +30,26 @@ app.post('/contactList', function(req, res) {
     })
 });
 
-//
-app.delete('/contactlist/:id', function (req, res) {
-	// Grab value of id from the URL
-	var id = req.params.id;
-	console.log(id)
 
-})
+app.delete('/contactList/:id', function (req, res) {
+    var id = req.params.id;
+    console.log(id);
+    db.contactList.remove({_id: mongojs.ObjectId(id)}, function (err,doc){
+        res.json(doc)
+    })
+});
+
+// // NOT WORKING
+// app.delete('/contactlist/:id', function (req, res) {
+// 	// Grab value of id from the URL
+// 	// var id = req.params.name;
+// 	// console.log(id)
+//     console.log("delete clicked")
+//     db.contactList.remove(req.body.contact._id, function (err,doc) {
+//         console.log("removed")
+//     })
+
+// })
 
 // App is listening on Port 3000
 app.listen(PORT);;

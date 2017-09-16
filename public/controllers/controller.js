@@ -25,8 +25,11 @@ myApp.controller('AppCtrl', ['$scope', '$http', function($scope, $http) {
     };
 
     $scope.remove = function(id) {
-    	console.log(id)
-    	$http.delete("contactList/" + response.id)
+    	console.log(id);
+        $http.delete('/contactList/' + id).then(function(response) {
+            refresh();
+        })
+
     }
 
 
